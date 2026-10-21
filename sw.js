@@ -1,5 +1,5 @@
-const C='hrr3d-v1';
-const A=['./','index.html','style.css','game.js','manifest.json','icon.svg','https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
+const C='hrr3d-v2';
+const A=['./','index.html','style.css','manifest.json','icon.svg','js/config.js','js/scene.js','js/vehicles.js','js/city.js','js/state.js','js/autopilot.js','js/physics.js','js/hud.js','js/screens.js','js/input.js','js/main.js','https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
 self.addEventListener('install',e=>{e.waitUntil(caches.open(C).then(c=>Promise.all(A.map(u=>c.add(u).catch(()=>{})))));self.skipWaiting()});
 self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(k=>Promise.all(k.filter(x=>x!==C).map(x=>caches.delete(x)))));self.clients.claim()});
 self.addEventListener('fetch',e=>{

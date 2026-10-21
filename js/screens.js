@@ -1,0 +1,26 @@
+'use strict';
+/* ---------- screens ---------- */
+function ov(title,html,btns){$('ptitle').textContent=title;$('pbody').innerHTML=html;const o=$('popts');o.innerHTML='';btns.forEach(([t,f])=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;o.appendChild(b)});$('popup').style.display='block'}
+const HELP='<p>Xuất phát <b>07:30</b>, đến công ty cách <b>10 km</b> trước <b>07:45</b>. Dừng ở trạm Supercharger (làn phải, vạch xanh) để nạp đầy 3 bình khí.</p><p><b>W/S</b> tiến/phanh/lùi · <b>A/D</b> rẽ · <b>Q</b> giữ = Rocket Boost · <b>E</b> bay (Space/Shift lên/xuống) · <b>R</b> bám tường (mọi tường, Space/Shift leo lên/xuống) · <b>F</b> lộn né (trái/phải = lộn ngang, lên/xuống = lộn dọc) · <b>C</b> đổi camera · <b>kéo chuột/vuốt</b> xoay cam · <b>lăn chuột/chụm 2 ngón</b> thu phóng · <b>V</b> reset cam · <b>P/Esc</b> tạm dừng.</p><p>Trợ lái (Settings): dừng đèn đỏ, giữ làn, né xe, hoặc tự lái và tự vào trạm sạc sau mỗi 2000 m.</p>';
+function menu(){state='menu';reset();ov('HANOI ROADSTER ROCKET 3D','<p>🚀 Deadline 07:45</p>'+HELP,[['▶ Play',start],['⚙ Settings',()=>settings(menu)],['Quit',()=>{$('pbody').innerHTML='<p>Đã thoát. Bấm Play để chơi lại.</p>'}]])}
+function pauseOv(){ov('TẠM DỪNG','',[['Resume',resume],['Restart',start],['Settings',()=>settings(pauseOv)],['Quit',menu]])}
+const ST=[
+['h','Điều khiển'],['r','Độ nhạy lái','sens',.5,1.6,.05],['s','Camera','cam',['Sau xe','Trong xe','Xa','Trước xe']],
+['h','Camera & tâm ngắm'],['r','Độ nhạy xoay camera','cs',.3,2.5,.1],['s','Đảo trục ngang camera','ix',['Không','Có']],['s','Đảo trục dọc camera','iy',['Không','Có']],['s','Xe quay mũi theo tâm','fa',['Tắt','Bật']],['s','Tự thẳng lại theo đường','al',['Tắt','Bật']],['s','Kiểu tâm','am',['Vòng + chấm','Chấm','Chữ thập','Ẩn']],['r','Cỡ tâm','az',.6,2,.1],['s','Màu tâm','ac',['Trắng','Vàng','Xanh lá','Đỏ','Xanh dương']],
+['h','Hiển thị'],['s','Đồ họa','gfx',['Thấp','Vừa','Cao']],['r','Cỡ nút cảm ứng','bs',.7,1.4,.05],['r','Vị trí nút (nâng lên)','bo',0,120,5],
+['h','Độ khó'],['s','Độ khó giao thông','diff',['Dễ','Thường','Khó']],
+['h','Hỗ trợ lái'],['s','Trợ lái','ast',['Tắt','Phanh tự động + dừng đèn đỏ','Thêm giữ làn và né xe','Tự lái: né xe, đèn đỏ, sạc mỗi 2000 m']],['s','Tự động tăng tốc','auto',['Tắt','Bật']],
+['h','Điện thoại & hiệu năng'],['s','Rung khi va chạm','vib',['Tắt','Bật']],['s','Giới hạn FPS','fps',['Không giới hạn','30','60']],
+['h','Lối chơi'],['r','Mật độ xe','td',.3,1.5,.1],['r','Mật độ người đi bộ','pd',0,1,.1],['r','Thời gian miễn đâm sau lộn (giây)','iv',.5,3,.1],['s','Thời gian trong ngày','tod',['Ban ngày','Hoàng hôn','Ban đêm','Âm u / mưa']],['s','Gợi ý ngã tư & trạm sạc','hint',['Tắt','Bật']]
+/*ST_END*/];
+function settings(back){const rows=ST.map(x=>x[0]=='h'?`<div class="row" style="color:#0ff;font-weight:bold;margin-top:8px">${x[1]}</div>`:x[0]=='r'?`<div class="row">${x[1]}<input type="range" data-k="${x[2]}" min="${x[3]}" max="${x[4]}" step="${x[5]}" value="${S[x[2]]}"></div>`:`<div class="row">${x[1]}<select data-k="${x[2]}">${x[3].map((o,i)=>`<option value="${i}"${i==S[x[2]]?' selected':''}>${o}</option>`).join('')}</select></div>`).join('');
+ ov('SETTINGS',rows,[['Xong',()=>back()]]);
+ document.querySelectorAll('#pbody [data-k]').forEach(e=>e.oninput=e.onchange=()=>{const k=e.dataset.k;S[k]=+e.value;if(k=='cam'){CY_=CP_=0;camZ=1}apply()})}
+const hl=new THREE.PointLight(0xffffee,0,70);hl.position.set(0,3,-8);
+function applyTod(){const T=[[0x9cc3e6,120,520,1,.9,0xfff2dd,0],[0xf2a65a,100,450,.7,.8,0xffb070,.4],[0x0a1230,60,320,.28,.25,0x6677aa,1.6],[0x8e9aa6,50,260,.75,.35,0xdddddd,0]][S.tod];scene.background=new THREE.Color(T[0]);scene.fog=new THREE.Fog(T[0],T[1],T[2]);hemi.intensity=T[3];sun.intensity=T[4];sun.color.setHex(T[5]);hl.intensity=T[6];if(!hl.parent)car.add(hl)}
+function apply(){applyTod();try{localStorage.setItem('hrr3d',JSON.stringify(S))}catch(e){}{const el=$('aim');if(el){const z=30*S.az;el.className='m'+S.am;el.style.width=el.style.height=z+'px';el.style.margin=(-z/2)+'px 0 0 '+(-z/2)+'px';el.style.setProperty('--ac',['#ffffff','#ffd700','#2ecc71','#ff3b3b','#3aa0ff'][S.ac])}}R.setPixelRatio([.6,1,Math.min(window.devicePixelRatio||1,2)][S.gfx]);R.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();document.body.style.setProperty('--bs',S.bs);document.body.style.setProperty('--bo',S.bo+'px')}
+function start(){reset();$('popup').style.display='none';state='play';last=performance.now();toast('07:30 — Xuất phát! Đến công ty trước 07:45')}
+function resume(){$('popup').style.display='none';state='play';last=performance.now()}
+function pause(){if(state=='play'){state='pause';held.q=false;pauseOv()}else if(state=='pause')resume()}
+function end(win){state='end';held.q=false;const late=!win;
+ ov(win?'🎉 CHIẾN THẮNG':'⏰ THẤT BẠI',`<p>${win?'Bạn đến công ty đúng giờ!':'Quá 07:45 — bạn bị đình chỉ lương!'}</p><p>Thời gian: <b>${fmtC(Math.min(simT,TL))}</b><br>Quãng đường: <b>${(P.s/1000).toFixed(2)} km</b> / 10 km<br>Số lần sạc: <b>${P.charges}</b> · Va chạm: <b>${P.cols}</b><br>Năng lượng còn lại: Q <b>${Math.ceil(en.b)}</b> · E <b>${Math.ceil(en.f)}</b> · R <b>${Math.ceil(en.w)}</b> · F <b>${Math.ceil(en.l)}</b></p>`,[['↻ Chơi lại',start],['Menu',menu]])}

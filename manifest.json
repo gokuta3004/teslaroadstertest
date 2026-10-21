@@ -1,0 +1,14 @@
+{
+  "name": "Hanoi Roadster Rocket 3D",
+  "short_name": "Roadster 3D",
+  "description": "Lái Tesla Roadster SpaceX qua Hà Nội, đến công ty trong 15 phút.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "landscape",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

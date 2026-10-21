@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2b1a5e"/><stop offset="1" stop-color="#0a0a1a"/></linearGradient>
+<linearGradient id="fl" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#fff3c4"/><stop offset="1" stop-color="#ff5a1f" stop-opacity="0"/></linearGradient></defs>
+<rect width="512" height="512" rx="96" fill="url(#bg)"/>
+<path d="M20 300 L170 270 L170 330 L20 330 Z" fill="url(#fl)"/>
+<rect x="150" y="262" width="70" height="60" rx="20" fill="#15151a"/>
+<path d="M200 330 L215 290 Q240 250 300 245 L370 245 Q410 250 440 290 L470 300 Q490 305 490 330 L490 345 L200 345 Z" fill="#c8102e"/>
+<path d="M290 258 L360 258 Q385 262 405 288 L290 288 Z" fill="#0b1018" opacity=".8"/>
+<circle cx="290" cy="352" r="36" fill="#111"/><circle cx="290" cy="352" r="18" fill="#444"/>
+<circle cx="430" cy="352" r="36" fill="#111"/><circle cx="430" cy="352" r="18" fill="#444"/>
+<text x="256" y="460" font-family="Arial,sans-serif" font-weight="900" font-size="60" fill="#ffd700" text-anchor="middle">ROADSTER</text>
+</svg>

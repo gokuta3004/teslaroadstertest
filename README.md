@@ -1,4 +1,4 @@
-# Hanoi Roadster Rocket 3D
+# Hanoi Roadster Rocket
 
 Game lái Tesla Roadster (gói SpaceX) qua Hà Nội: 10 km, 15 phút, ngã tư, trạm Supercharger, bay, lộn né, bám tường.
 

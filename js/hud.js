@@ -26,7 +26,7 @@ function mini(){const w=120,h=150,g=mmc,sp0=P.s,c0=cx(sp0),X=s=>w/2+cl((cx(s)-c0
 function hud(){const rem=TL-simT,d=rth(P.s+120)-rth(P.s);
  $('clk').textContent='🕒 '+fmtC(simT)+' / hạn 07:45';$('left').textContent='CÒN '+fmtM(rem);$('spd').textContent=Math.round(Math.abs(P.vf)*3.6)+' km/h';{const q=loc(FI),dd=P.s<CS-12?(CS-P.s)+112:Math.max(0,112-CSIDE*q[0]);$('dst').textContent='ĐẾN CÔNG TY: '+(dd/1000).toFixed(2)+' km'};
  ['b','f','w'].forEach(k=>{$('v'+k).textContent=Math.ceil(en[k]);$('b'+k).style.transform='scaleX('+en[k]/100+')'});
- const st=[];if(P.boost)st.push('BOOST');if(P.fly)st.push('BAY');if(P.wall)st.push('BÁM TƯỜNG');if(P.fl>0)st.push('LỘN VÒNG');else if(simT<P.inv)st.push('MIỄN ĐÂM');if(P.chg>0)st.push('ĐANG SẠC');if(P.pol)st.push('CẢNH SÁT');if(S.ast>=3)st.push('TỰ LÁI');
+ const st=[];if(P.boost)st.push('BOOST');if(P.fly)st.push('BAY');if(P.wall)st.push('BÁM TƯỜNG');if(P.fl>0)st.push('LỘN VÒNG');else if(simT<P.inv)st.push('MIỄN ĐÂM');if(P.chg>0)st.push('ĐANG SẠC');if(P.pol)st.push('CẢNH SÁT');if(S.ast)st.push('TỰ LÁI');
  $('stat').innerHTML=st.map(t=>`<span class="badge g">${t}</span>`).join('');
  $('nav').textContent=S.hint&&P.s>CS-400&&P.s<CS+14?(P.s<CS-12?(CSIDE>0?'↱ Rẽ PHẢI ':'↰ Rẽ TRÁI ')+'ở ngã tư cuối ('+Math.round(CS-P.s)+'m)':(CSIDE>0?'→ Đi tiếp bên phải':'← Đi tiếp bên trái')):(d>.04?'↰ Cua trái':d<-.04?'↱ Cua phải':'↑ Đi thẳng');
  const sk=Math.max(1,Math.ceil((P.s-7)/150));$('stn').textContent=sk<=66?'⚡ Trạm: '+Math.max(0,sk*150-P.s).toFixed(0)+' m':'Hết trạm sạc';

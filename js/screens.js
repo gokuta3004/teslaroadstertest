@@ -1,7 +1,7 @@
 'use strict';
 /* ---------- screens ---------- */
 function ov(title,html,btns){$('ptitle').textContent=title;$('pbody').innerHTML=html;const o=$('popts');o.innerHTML='';btns.forEach(([t,f])=>{const b=document.createElement('button');b.textContent=t;b.onclick=f;o.appendChild(b)});$('popup').style.display='block'}
-const HELP='<p>Xuất phát <b>07:30</b>, đến công ty cách <b>10 km</b> trước <b>07:45</b>. Dừng ở trạm Supercharger (làn phải, vạch xanh) để nạp đầy 3 bình khí.</p><p><b>W/S</b> tiến/phanh/lùi · <b>A/D</b> rẽ · <b>Q</b> giữ = Rocket Boost · <b>E</b> bay (Space/Shift lên/xuống) · <b>R</b> bám tường (mọi tường, Space/Shift leo lên/xuống) · <b>F</b> lộn né (trái/phải = lộn ngang, lên/xuống = lộn dọc) · <b>C</b> đổi camera · <b>kéo chuột/vuốt</b> xoay cam · <b>lăn chuột/chụm 2 ngón</b> thu phóng · <b>V</b> reset cam · <b>P/Esc</b> tạm dừng.</p><p>Trợ lái (Settings): dừng đèn đỏ, giữ làn, né xe, hoặc tự lái và tự vào trạm sạc sau mỗi 2000 m.</p>';
+const HELP='<p>Xuất phát <b>07:30</b>, đến công ty cách <b>10 km</b> trước <b>07:45</b>. Dừng ở trạm Supercharger (làn phải, vạch xanh) để nạp đầy 3 bình khí.</p><p><b>W/S</b> tiến/phanh/lùi · <b>A/D</b> rẽ · <b>Q</b> giữ = Rocket Boost · <b>E</b> bay (Space/Shift lên/xuống) · <b>R</b> bám tường (mọi tường, Space/Shift leo lên/xuống) · <b>F</b> lộn né (trái/phải = lộn ngang, lên/xuống = lộn dọc) · <b>C</b> đổi camera · <b>kéo chuột/vuốt</b> xoay cam · <b>lăn chuột/chụm 2 ngón</b> thu phóng · <b>V</b> reset cam · <b>P/Esc</b> tạm dừng.</p><p><b>T</b> bật/tắt Tự lái: xe tự giữ làn, né xe, dừng đèn đỏ, tự vào trạm sạc sau mỗi 2000 m và tự rẽ vào công ty. Bấm phím lái để lấy lại quyền điều khiển.</p>';
 function menu(){state='menu';reset();ov('HANOI ROADSTER ROCKET 3D','<p>🚀 Deadline 07:45</p>'+HELP,[['▶ Play',start],['⚙ Settings',()=>settings(menu)],['Quit',()=>{$('pbody').innerHTML='<p>Đã thoát. Bấm Play để chơi lại.</p>'}]])}
 function pauseOv(){ov('TẠM DỪNG','',[['Resume',resume],['Restart',start],['Settings',()=>settings(pauseOv)],['Quit',menu]])}
 const ST=[
@@ -9,7 +9,7 @@ const ST=[
 ['h','Camera & tâm ngắm'],['r','Độ nhạy xoay camera','cs',.3,2.5,.1],['s','Đảo trục ngang camera','ix',['Không','Có']],['s','Đảo trục dọc camera','iy',['Không','Có']],['s','Xe quay mũi theo tâm','fa',['Tắt','Bật']],['s','Tự thẳng lại theo đường','al',['Tắt','Bật']],['s','Kiểu tâm','am',['Vòng + chấm','Chấm','Chữ thập','Ẩn']],['r','Cỡ tâm','az',.6,2,.1],['s','Màu tâm','ac',['Trắng','Vàng','Xanh lá','Đỏ','Xanh dương']],
 ['h','Hiển thị'],['s','Đồ họa','gfx',['Thấp','Vừa','Cao']],['r','Cỡ nút cảm ứng','bs',.7,1.4,.05],['r','Vị trí nút (nâng lên)','bo',0,120,5],
 ['h','Độ khó'],['s','Độ khó giao thông','diff',['Dễ','Thường','Khó']],
-['h','Hỗ trợ lái'],['s','Trợ lái','ast',['Tắt','Phanh tự động + dừng đèn đỏ','Thêm giữ làn và né xe','Tự lái: né xe, đèn đỏ, sạc mỗi 2000 m']],['s','Tự động tăng tốc','auto',['Tắt','Bật']],
+['h','Tự lái'],['s','Tự lái (né xe, đèn đỏ, sạc mỗi 2000 m)','ast',['Tắt','Bật']],['s','Tự động tăng tốc','auto',['Tắt','Bật']],
 ['h','Điện thoại & hiệu năng'],['s','Rung khi va chạm','vib',['Tắt','Bật']],['s','Giới hạn FPS','fps',['Không giới hạn','30','60']],
 ['h','Lối chơi'],['r','Mật độ xe','td',.3,1.5,.1],['r','Mật độ người đi bộ','pd',0,1,.1],['r','Thời gian miễn đâm sau lộn (giây)','iv',.5,3,.1],['s','Thời gian trong ngày','tod',['Ban ngày','Hoàng hôn','Ban đêm','Âm u / mưa']],['s','Gợi ý ngã tư & trạm sạc','hint',['Tắt','Bật']]
 /*ST_END*/];

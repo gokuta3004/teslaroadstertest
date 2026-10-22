@@ -4,7 +4,7 @@ let CSIDE=1;const ROUTE=9875,TL=900,L=25,NC=34,BACK=6,NF=400,NI=49,FI=395,CS=987
 const cx=s=>120*Math.sin(s/900)+30*Math.sin(s/260+1);
 const rth=s=>-Math.atan(120/900*Math.cos(s/900)+30/260*Math.cos(s/260+1));
 const hs=i=>{const x=Math.sin(i*127.1+311.7)*43758.5453;return x-Math.floor(x)};
-const S={vol:.6,gfx:1,sens:1,cam:0,diff:1,bs:1,bo:0,cs:1,ix:0,iy:0,fa:1,al:0,am:0,az:1,ac:0,ast:0,auto:0,vib:1,fps:0,td:1,pd:1,iv:1.5,tod:0,hint:1};try{Object.assign(S,JSON.parse(localStorage.getItem('hrr3d')||'{}'))}catch(e){}
+const S={vol:.6,gfx:1,sens:1,cam:0,diff:1,bs:1,bo:0,cs:1,ix:0,iy:0,fa:1,al:0,am:0,az:1,ac:0,ast:0,auto:0,vib:1,fps:0,td:1,pd:1,iv:1.5,tod:0,hint:1};try{Object.assign(S,JSON.parse(localStorage.getItem('hrr3d')||'{}'))}catch(e){}S.ast=S.ast?1:0;
 const siteAt=i=>i>8&&i<395&&i%8>3&&i%8<7&&i%6!=0&&hs(i*3.7)<.1;
 const potAt=i=>(i>3&&i%6!=0&&hs(i*5.1)<.07)?{x:LN[Math.floor(hs(i*9.3)*7)],o:(hs(i*2.2)-.5)*16}:null;
 const marked=i=>i%6<3&&i>1&&i<NF&&i%8!=3,isInter=i=>i>0&&i<NF&&i%8==3,red=(i,t)=>((t+i*5.3)%30)>=22;

@@ -15,7 +15,7 @@ Chạy tại: https://toilalode.github.io/teslaroadstertest/
 | `js/vehicles.js` | Xe giao thông và mô hình Tesla Roadster SpaceX |
 | `js/city.js` | Đường, nhà, ngã tư, trạm sạc, công trường, công ty |
 | `js/state.js` | Trạng thái, sinh xe, va chạm, cảnh sát, kỹ năng |
-| `js/autopilot.js` | Trợ lái: phanh, đèn đỏ, giữ làn, né xe, tự lái và tự sạc mỗi 2000 m |
+| `js/autopilot.js` | Tự lái (bật/tắt, phím T): giữ làn, né xe, dừng đèn đỏ, tự sạc mỗi 2000 m, tự rẽ vào công ty |
 | `js/physics.js` | Vật lý, va chạm, giao thông |
 | `js/hud.js` | Camera, HUD, bản đồ nhỏ |
 | `js/screens.js` | Menu, Settings, màn kết thúc |

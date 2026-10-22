@@ -26,10 +26,10 @@ function lateralNudge(){let push=0;for(const a of AC){if(!a.on||a.park)continue;
 const steerToHeading=target=>{const d=target-P.th;return cl(-Math.atan2(Math.sin(d),Math.cos(d))*2.2,-1,1)};
 const headingForLane=target=>rth(P.s)-cl((target-P.lat)*.08,-.22,.22);
 function drivePlan(k){
- const full=S.ast>=3,manualStr=Math.abs(k.str)>.1,manualThr=Math.abs(k.thr)>.1,plan={thr:null,str:null,brake:false,boost:false};
+ const full=!!S.ast,manualStr=Math.abs(k.str)>.1,manualThr=Math.abs(k.thr)>.1,plan={thr:null,str:null,brake:false,boost:false};
  const safe=safeSpeed(),guard=Math.min(safe.cars,safe.light),emergency=P.vf>safe.cars+1.5;let target=guard;
  if(manualStr)AP.lane=null;
- if(S.ast>=2&&!manualStr){
+ if(!manualStr){
   if(full&&P.s>CS-16){plan.str=steerToHeading(rth(FI*L)-CSIDE*Math.PI/2);target=Math.min(target,10)}
   else if(!xinfo()){
    const charge=full?chargePlan():null;let laneTarget;

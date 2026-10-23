@@ -1,6 +1,9 @@
 'use strict';
 /* ---------- input ---------- */
-addEventListener('keydown',e=>{if(e.repeat)return;K[e.code]=true;const c=e.code;if(c=='KeyQ')held.q=true;else if(c=='KeyE')act('e');else if(c=='KeyR')act('r');else if(c=='KeyF')act('f');else if(c=='KeyC'){S.cam=(S.cam+1)%4;CY_=CP_=0;camZ=1}else if(c=='KeyV'){CY_=CP_=0;camZ=1}else if(c=='KeyT'){S.ast=S.ast?0:1;AP.lane=null;AP.sk=null;toast(S.ast?'Tự lái: BẬT':'Tự lái: TẮT');apply()}else if(c=='KeyP'||c=='Escape')pause();
+function camNext(){S.cam=(S.cam+1)%4;CY_=CP_=0;camZ=1;apply()}
+function camReset(){CY_=CP_=0;camZ=1}
+function autoToggle(){S.ast=S.ast?0:1;AP.lane=null;AP.sk=null;toast(S.ast?'Tự lái: BẬT':'Tự lái: TẮT');apply()}
+addEventListener('keydown',e=>{if(e.repeat)return;K[e.code]=true;const c=e.code;if(c=='KeyQ')held.q=true;else if(c=='KeyE')act('e');else if(c=='KeyR')act('r');else if(c=='KeyF')act('f');else if(c=='KeyC')camNext();else if(c=='KeyV')camReset();else if(c=='KeyT')autoToggle();else if(c=='KeyP'||c=='Escape')pause();
  if(['Space','ArrowUp','ArrowDown','ShiftLeft'].includes(c))e.preventDefault()});
 addEventListener('keyup',e=>{K[e.code]=false;if(e.code=='KeyQ')held.q=false});
 addEventListener('blur',()=>{for(const k in K)K[k]=false;held.q=false;ui.up=ui.dn=false});
@@ -17,6 +20,7 @@ cv.addEventListener('pointermove',e=>{const p=pt.get(e.pointerId);if(!p)return;c
 ['pointerup','pointercancel'].forEach(n=>cv.addEventListener(n,e=>{pt.delete(e.pointerId);pd0=0}));
 cv.addEventListener('wheel',e=>{e.preventDefault();camI=0;camZ=cl(camZ*(e.deltaY>0?1.1:.9),.35,3.5)},{passive:false});
 $('pb').addEventListener('click',pause);
+[['bc',camNext],['bv',camReset],['bt',autoToggle]].forEach(([id,fn])=>$(id).addEventListener('click',e=>{fn();e.currentTarget.blur()}));
 ['gesturestart','gesturechange','gestureend'].forEach(n=>document.addEventListener(n,e=>e.preventDefault(),{passive:false}));
 document.addEventListener('touchmove',e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
 let ltt=0;document.addEventListener('touchend',e=>{const n=Date.now();if(n-ltt<350&&!e.target.closest('#popup'))e.preventDefault();ltt=n},{passive:false});

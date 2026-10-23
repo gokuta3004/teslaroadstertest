@@ -82,7 +82,8 @@ button{font-family:'Courier New',monospace}
 #gbody{min-height:0;flex:1 1 auto}
 html{touch-action:none;-webkit-text-size-adjust:100%}
 #banner{top:92px;bottom:auto;color:#ff6b6b;opacity:0}
-#pb{pointer-events:auto;width:42px;height:34px;background:#1b053a;color:#fff;border:1px solid #9945ff;border-radius:8px;font-size:16px}
+#hbar{display:flex;gap:4px;pointer-events:auto}
+#hbar button{width:42px;height:34px;background:#1b053a;color:#fff;border:1px solid #9945ff;border-radius:8px;font-size:16px;font-weight:bold;padding:0}
 #mm{position:relative;inset:auto;width:min(30vw,120px);height:auto;background:rgba(10,5,25,.7);border:1px solid #4d26b3;border-radius:6px}
 #chg{position:fixed;left:50%;bottom:26%;transform:translateX(-50%);width:min(70vw,320px);display:none;z-index:150;text-align:center;background:rgba(10,5,25,.9);border:1px solid #2ecc71;border-radius:8px;padding:8px;color:#2ecc71}
 #chgb{display:block;height:100%;width:100%;background:#2ecc71;transform-origin:0 50%}
